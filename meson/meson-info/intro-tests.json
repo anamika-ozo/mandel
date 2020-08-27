@@ -1,0 +1,1 @@
+[{"cmd": ["/Users/mira/Documents/Projects/fractal-app/meson/index"], "env": {}, "name": "basic", "workdir": null, "timeout": 30, "suite": ["mandel"], "is_parallel": true, "priority": 0, "protocol": "exitcode"}]

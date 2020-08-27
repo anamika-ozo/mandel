@@ -1,0 +1,8 @@
+[
+  {
+    "directory": "/Users/mira/Documents/Projects/mandel/build",
+    "command": "c++ -Imyproject.p -I. -I.. -Xclang -fcolor-diagnostics -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -MD -MQ myproject.p/myproject.cpp.o -MF myproject.p/myproject.cpp.o.d -o myproject.p/myproject.cpp.o -c ../myproject.cpp",
+    "file": "../myproject.cpp",
+    "output": "myproject.p/myproject.cpp.o"
+  }
+]

@@ -1,0 +1,1 @@
+[{"cmd": ["/Users/mira/Documents/Projects/mandel/build/myproject"], "env": {}, "name": "basic", "workdir": null, "timeout": 30, "suite": ["myproject"], "is_parallel": true, "priority": 0, "protocol": "exitcode"}]
