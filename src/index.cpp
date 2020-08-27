@@ -1,39 +1,49 @@
 #include <iostream>
 #include <math.h>
+using namespace std;
 
-class Complex
-{
-public:
-	int real, complex;
-
-private:
-
+class Complex {
+	public:
+		double real_part;
+		double complex_part;
+		void squared(double *x, double *i) {
+			*x = (real_part * real_part) - (complex_part * complex_part);
+			*i = 2 * real_part * complex_part;
+		}
+		double magnitude() {
+			return sqrt(real_part*real_part + complex_part*complex_part);
+		}
 };
 
+bool stays_bounded() {
 
-template <unsigned N>
-struct Factorial {
-  static const unsigned value = N * Factorial<N - 1>::value;
-};
+	Complex c;
+	cout << "Enter Real Part, dummy" << endl;
+	cin >> c.real_part;
+	cout << "Enter Complex Part, dummy" << endl;
+	cin >> c.complex_part;
 
+	Complex z;
+	z.real_part = 0;
+	z.complex_part = 0;
 
-template <>
-struct Factorial<0> {
-  static const unsigned value = 1;
-};
+	double i, x;
 
-auto main(void) -> int {
-	int 
-		z = 0, 
-		c = 1;
-
-	while(z < 1000) {
-	    z++;
-
-	    if (z * z + c == 2) {
-	    	return 2;
-	    }
-
-	    std::cout << z << std::endl;
+	double count = 0;
+	while (count < 100) {
+		z.squared(&x,&i);
+		z.real_part = x + c.real_part;
+		z.complex_part = i + c.complex_part;
+		count++;
+		if (z.magnitude() > 2) {
+			cout << z.magnitude() << endl;
+			return 0;
+		}
 	}
+	cout << z.magnitude() << endl;
+	return 1;
+}
+
+int main() {
+	cout << stays_bounded() << endl;
 }
