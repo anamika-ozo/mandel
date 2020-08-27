@@ -5,7 +5,7 @@
 #### Installation
 First, you'll want to clone this repo.
 
-`git clone https://git.gitlab.com/anamika_ozo/mandel.git`
+`git clone https://gitlab.com/anamika_ozo/mandel.git`
 
 Enter the working directory with the `cd` command
 
