@@ -1,6 +1,6 @@
-Build started at 2020-08-27T16:26:10.767093
+Build started at 2020-08-27T17:30:16.449438
 Main binary: /usr/local/opt/python@3.8/bin/python3.8
-Build Options: 
+Build Options: -Dbackend=ninja
 Python system: Darwin
 The Meson build system
 Version: 0.55.1
@@ -11,41 +11,9 @@ None of 'PKG_CONFIG_PATH' are defined in the environment, not changing global fl
 None of 'PKG_CONFIG_PATH' are defined in the environment, not changing global flags.
 Project name: mandel
 Project version: 0.1
-None of 'CXX' are defined in the environment, not changing global flags.
-None of 'CXXFLAGS' are defined in the environment, not changing global flags.
-None of 'LDFLAGS' are defined in the environment, not changing global flags.
-None of 'CPPFLAGS' are defined in the environment, not changing global flags.
-None of 'CXX_LD' are defined in the environment, not changing global flags.
-Sanity testing C++ compiler: c++
-Is cross compiler: False.
-None of 'CXX_LD' are defined in the environment, not changing global flags.
-Sanity check compiler command line: c++ /Users/mira/Documents/Projects/fractal-app/meson/meson-private/sanitycheckcpp.cc -o /Users/mira/Documents/Projects/fractal-app/meson/meson-private/sanitycheckcpp.exe -pipe
-Sanity check compile stdout:
-
------
-Sanity check compile stderr:
-
------
-Running test binary command: /Users/mira/Documents/Projects/fractal-app/meson/meson-private/sanitycheckcpp.exe
 C++ compiler for the build machine: c++ (clang 12.0.0 "Apple clang version 12.0.0 (clang-1200.0.22.7)")
 C++ linker for the build machine: c++ ld64 607.2
 None of 'AR' are defined in the environment, not changing global flags.
-None of 'CXX' are defined in the environment, not changing global flags.
-None of 'CXXFLAGS' are defined in the environment, not changing global flags.
-None of 'LDFLAGS' are defined in the environment, not changing global flags.
-None of 'CPPFLAGS' are defined in the environment, not changing global flags.
-None of 'CXX_LD' are defined in the environment, not changing global flags.
-Sanity testing C++ compiler: c++
-Is cross compiler: False.
-None of 'CXX_LD' are defined in the environment, not changing global flags.
-Sanity check compiler command line: c++ /Users/mira/Documents/Projects/fractal-app/meson/meson-private/sanitycheckcpp.cc -o /Users/mira/Documents/Projects/fractal-app/meson/meson-private/sanitycheckcpp.exe -pipe
-Sanity check compile stdout:
-
------
-Sanity check compile stderr:
-
------
-Running test binary command: /Users/mira/Documents/Projects/fractal-app/meson/meson-private/sanitycheckcpp.exe
 C++ compiler for the host machine: c++ (clang 12.0.0 "Apple clang version 12.0.0 (clang-1200.0.22.7)")
 C++ linker for the host machine: c++ ld64 607.2
 None of 'AR' are defined in the environment, not changing global flags.
@@ -56,12 +24,13 @@ Host machine cpu: x86_64
 Target machine cpu family: x86_64
 Target machine cpu: x86_64
 Adding test "basic"
+Program meson/linux_bundler.sh found: YES (/Users/mira/Documents/Projects/fractal-app/meson/linux_bundler.sh)
 Build targets in project: 1
 
 Found ninja-1.10.1 at /usr/local/bin/ninja
 Running compile:
-Working directory:  /var/folders/t_/jq58zm9d3zl7rrfptq7dzv200000gn/T/tmpwm0b4ynb
-Command line:  c++ /var/folders/t_/jq58zm9d3zl7rrfptq7dzv200000gn/T/tmpwm0b4ynb/testfile.cpp -o /var/folders/t_/jq58zm9d3zl7rrfptq7dzv200000gn/T/tmpwm0b4ynb/output.obj -pipe -c -std=c++14 
+Working directory:  /var/folders/t_/jq58zm9d3zl7rrfptq7dzv200000gn/T/tmp5nm5lovd
+Command line:  c++ /var/folders/t_/jq58zm9d3zl7rrfptq7dzv200000gn/T/tmp5nm5lovd/testfile.cpp -o /var/folders/t_/jq58zm9d3zl7rrfptq7dzv200000gn/T/tmp5nm5lovd/output.obj -pipe -c -std=c++14 
 
 Code:
  int i = static_cast<int>(0);
@@ -71,8 +40,8 @@ Compiler stderr:
  
 Compiler accepts -std=c++14: YES
 Running compile:
-Working directory:  /Users/mira/Documents/Projects/fractal-app/meson/meson-private/tmpcoari8_l
-Command line:  c++ /Users/mira/Documents/Projects/fractal-app/meson/meson-private/tmpcoari8_l/testfile.cpp -o /Users/mira/Documents/Projects/fractal-app/meson/meson-private/tmpcoari8_l/output.obj -pipe -c -O0 -fpermissive --print-search-dirs 
+Working directory:  /Users/mira/Documents/Projects/fractal-app/meson/meson-private/tmpe36bxqjw
+Command line:  c++ /Users/mira/Documents/Projects/fractal-app/meson/meson-private/tmpe36bxqjw/testfile.cpp -o /Users/mira/Documents/Projects/fractal-app/meson/meson-private/tmpe36bxqjw/output.obj -pipe -c -O0 -fpermissive --print-search-dirs 
 
 Code:
  

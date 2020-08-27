@@ -7,3 +7,5 @@ exe = executable('index', 'src/index.cpp',
   install : false)
 
 test('basic', exe)
+
+meson.add_install_script('meson/linux_bundler.sh')
