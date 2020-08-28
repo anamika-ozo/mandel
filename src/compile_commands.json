@@ -1,8 +1,0 @@
-[
-  {
-    "directory": "/home/fizzy/mandel/src",
-    "command": "c++ -Iindex@exe -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -MD -MQ 'index@exe/src_index.cpp.o' -MF 'index@exe/src_index.cpp.o.d' -o 'index@exe/src_index.cpp.o' -c ../src/index.cpp",
-    "file": "../src/index.cpp",
-    "output": "index@exe/src_index.cpp.o"
-  }
-]
