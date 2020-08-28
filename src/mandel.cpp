@@ -15,7 +15,7 @@ class Complex {
 		}
 };
 
-bool stays_bounded(double x, double i) {
+int stays_bounded(double x, double i) {
 
 	Complex c;
 
@@ -42,20 +42,20 @@ bool stays_bounded(double x, double i) {
 		count++;
 		if (z.magnitude() >= 2 || z.magnitude() <= -2) {
 			//cout << z.magnitude() << endl;
-			return 0;
+			return count;
 		}
 	}
 	//cout << z.magnitude() << endl;
-	return 1;
+	return 0;
 }
 
 int main() {
 	unsigned char pix[2000000];
 	int res_x = 1000;
 	int res_y = 1000;
-	double zoom = 0.5;
-	double pos_x = -0.5;
-	double pos_y = 0;
+	double zoom = 100;
+	double pos_x = -0.765;
+	double pos_y = 0.1;
 	for (int x = -res_x/2; x <= res_x/2; x++) {
 		for (int i = -res_y/2; i <= res_y/2; i++){
 			//cout << x << " + " << i << "i" << endl;
@@ -64,13 +64,15 @@ int main() {
 			d = i;
 			double di = d/(res_x*zoom) + pos_y;
 			//cout << stays_bounded(dx, di) << endl;
-			if (stays_bounded(dx, di)) {
-				cout << "x = " << dx << ", i = " << di << " Position = " << x+res_x/2 + (i+res_y/2)*res_x << endl;
-				pix[x+res_x/2 + (i+res_y/2)*res_x]	= (255);
+			int in = stays_bounded(dx, di);
+			if (in > 0) {
+				cout << "x = " << dx << ", i = " << di << " Position = " << x+res_x/2 + (i+res_y/2)*res_x << " -- " << (in%16)*16 << endl;
+
+				pix[x+res_x/2 + (i+res_y/2)*res_x]	= ((in%16)*16);
 				//pix[x+res_x/2 + (i+res_y/2)*res_x +1]	= (255);
 				//pix[x+res_x/2 + (i+res_y/2)*res_x +2]	= (255);
 			} else {
-				cout << "x = " << dx << ", i = " << di << " Position = " << x+res_x/2 + (i+res_y/2)*res_x << endl;
+				//cout << "x = " << dx << ", i = " << di << " Position = " << x+res_x/2 + (i+res_y/2)*res_x << endl;
 
 				pix[x+res_x/2 + (i+res_y/2)*res_x]	= (0);
 				//pix[x+res_x/2 + (i+res_y/2)*res_x +1]	= (0);
