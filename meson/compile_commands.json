@@ -1,8 +1,0 @@
-[
-  {
-    "directory": "/Users/mira/Documents/Projects/fractal-app/meson",
-    "command": "c++ -Iindex.p -I. -I.. -Xclang -fcolor-diagnostics -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -MD -MQ index.p/src_index.cpp.o -MF index.p/src_index.cpp.o.d -o index.p/src_index.cpp.o -c ../src/index.cpp",
-    "file": "../src/index.cpp",
-    "output": "index.p/src_index.cpp.o"
-  }
-]
