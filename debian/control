@@ -1,0 +1,11 @@
+Source: mandel
+Section: qt
+Priority: optional
+Build-Depends: debhelper (>= 9), meson
+Standards-Version: 3.9.8
+Homepage: https://gitlab.com/anamika_ozo/mandel
+
+Package: mandel
+Architecture: all
+Depends: ${misc:Depends}, build-essential
+Description: Mandelbrot image viewer
