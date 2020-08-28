@@ -1,0 +1,1 @@
+[{"cmd": ["/home/fizzy/mandel/src/index"], "env": {}, "name": "basic", "workdir": null, "timeout": 30, "suite": ["mandel"], "is_parallel": true}]
