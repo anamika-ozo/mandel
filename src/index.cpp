@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+
 using namespace std;
 
 class Complex {
@@ -64,33 +65,6 @@ class equation_vars {
 		/* all private data goes here */
 };
 
-SDL_Window *window;
-
-void output () {
-	equation_vars a;
-
-	SDL_Window *window;
-	void drawMandel(float xrf, float yrf, float zrf);
-
-	FILE *output;
-	int height = a.res_x, width = a.res_y;
-	output = fopen("../assets/image.pgm", "wb");
-	if (output == NULL)
-	{
-		perror("ERROR: Cannot open output file");
-		exit(EXIT_FAILURE);
-	}
-
-	fprintf(output, "P5\n");
-	fprintf(output, "%d %d\n", width, height);
-	fprintf(output, "255\n");
-
-	fwrite(a.pix, 1, 16000000, output);
-
-	fclose(output);
-	//cout << endl << stays_bounded(-1,0);
-}
-
 void init () {
 	if ( SDL_Init(SDL_INIT_VIDEO) < 0 ){
 		cout << "Unable to init SDL, error: " << SDL_GetError() << endl;
@@ -118,6 +92,31 @@ void init () {
 	glLoadIdentity();
 	gluPerspective(45.0f, (float) width / (float) height, 0.1f, 100.0f);
 	glMatrixMode(GL_MODELVIEW);
+}
+
+void output () {
+	equation_vars a;
+
+	SDL_Window *window;
+	void drawMandel(float xrf, float yrf, float zrf);
+
+	FILE *output;
+	int height = a.res_x, width = a.res_y;
+	output = fopen("../assets/image.pgm", "wb");
+	if (output == NULL)
+	{
+		perror("ERROR: Cannot open output file");
+		exit(EXIT_FAILURE);
+	}
+
+	fprintf(output, "P5\n");
+	fprintf(output, "%d %d\n", width, height);
+	fprintf(output, "255\n");
+
+	fwrite(a.pix, 1, 16000000, output);
+
+	fclose(output);
+
 }
 
 
