@@ -1,26 +1,41 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <SDL2/SDL.h>
 
 #include "index.cpp"
 
+/*
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
+*/
 
 using namespace glm;
 
 #define WM_DOWORK (WM_APP + 100)
 #define WM_ENDTHREAD (WM_APP + 101)
+#define WM_STARTTHREAD (WP_APP - 101)
 
-float fetch_distance(Complex c, int max_iter)
-{
+
+float fetch_distance(Complex c, int max_iter) {
   float distance = 1e50;
   Complex z = new Complex(0, 0);
-  for (int i = 0; i < max_iter; i++)
-  {
+  for ( int i = 0; i < max_iter; i++ ) {
     main();
   }
+
+}
+
+<template class S>
+class scr {
+  int width, height, 
+}
+
+std::complex<double> scale(window<int> &scr, window<double> &fr, std::complex<double> c) {
+  std::complex<double> aux(c.real() / (double)scr.width() * fr.width() + fr.x_min(),
+ 	c.imag() / (double)scr.height() * fr.height() + fr.y_min());
+ 	return aux;
 }
 
 glewExperimental = true;
@@ -38,7 +53,7 @@ glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 GLFWwindow* window;
 window = glfwCreateWindow( 1024, 768, "Tutorial 01", NULL, NULL);
-if( window == NULL ){
+if( window == NULL ) {
     fprintf( stderr, "couldn't open window.\n" );
     glfwTerminate();
     return -1;
@@ -50,8 +65,7 @@ if (glewInit() != GLEW_OK) {
     return -1;
 }
 
-GLuint link_program(const std::vector<GLuint> &shaders)
-{
+GLuint link_program(const std::vector<GLuint> &shaders) {
   typedef std::vector<GLuint>::const_iterator shaders_it;
 
   GLuint program = 0;
@@ -68,10 +82,11 @@ GLuint link_program(const std::vector<GLuint> &shaders)
     glDetachShader(program, *it);
 
   error << "Error linking program: " << std::endl;
-  if (program_error(program, error))
-  {
+  if (program_error(program, error)) {
     glDeleteProgram(program);
     throw std::runtime_error(error.str());
   }
 
   return program;
+
+}

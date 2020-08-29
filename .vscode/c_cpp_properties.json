@@ -2,25 +2,14 @@
     "configurations": [
         {
             "name": "Linux",
-            "compilerPath": "/usr/bin/clang-7",
             "includePath": [
-                "${workspaceFolder}"
+                "${workspaceFolder}/**"
             ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ],
-            "intelliSenseMode": "clang-x64",
-            "browse": {
-                "path": [
-                    "${workspaceFolder}"
-                ],
-                "limitSymbolsToIncludedHeaders": true,
-                "databaseFilename": ""
-            },
+            "defines": [],
+            "compilerPath": "/usr/bin/g++",
             "cStandard": "c11",
-            "cppStandard": "c++17"
+            "cppStandard": "c++14",
+            "intelliSenseMode": "clang-x64"
         }
     ],
     "version": 4

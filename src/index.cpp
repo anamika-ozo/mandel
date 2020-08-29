@@ -50,55 +50,30 @@ bool stays_bounded(double x, double i) {
 }
 
 class equation_vars {
-public:
-	unsigned char pix[2000000];
-	int res_x = 1000;
-	int res_y = 1000;
-	double zoom = 0.5;
-	double pos_x = -0.5;
-	double pos_y = 0;
+	public:
+		unsigned char pix[2000000];
+		int res_x = 1000;
+		int res_y = 1000;
+		double zoom = 0.5;
+		double pos_x = -0.5;
+		double pos_y = 0;
+
+		const int width = 640, height = 480;
+	
+	private:
+		/* all private data goes here */
 };
 
-auto main() -> int {
+SDL_Window *window;
+
+void output () {
 	equation_vars a;
 
-	for (int x = -a.res_x / 2; x <= a.res_x / 2; x++)
-	{
-		for (int i = -a.res_y / 2; i <= a.res_y / 2; i++)
-		{
-			//cout << x << " + " << i << "i" << endl;
-			double d = x;
-			double dx = d / (a.res_x * a.zoom) + a.pos_x;
-			d = i;
-			double di = d / (a.res_x * a.zoom) + a.pos_y;
-			//cout << stays_bounded(dx, di) << endl;
-			if (stays_bounded(dx, di))
-			{
-				cout << "x = " << dx << ", i = " << di << " Position = " << x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x << endl;
-				a.pix[x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x] = (255);
-				//pix[x+res_x/2 + (i+res_y/2)*res_x +1]	= (255);
-				//pix[x+res_x/2 + (i+res_y/2)*res_x +2]	= (255);
-			}
-			else
-			{
-				cout << "x = " << dx << ", i = " << di << " Position = " << x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x << endl;
-
-				a.pix[x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x] = (0);
-				//pix[x+res_x/2 + (i+res_y/2)*res_x +1]	= (0);
-				//pix[x+res_x/2 + (i+res_y/2)*res_x +2]	= (0);
-			}
-		}
-	}
-}
-
-void output()
-{
-	equation_vars a;
+	SDL_Window *window;
+	void drawMandel(float xrf, float yrf, float zrf);
 
 	FILE *output;
-	int x, y, pixel, height = a.res_x, width = a.res_y;
-	//unsigned char pix[]={200,200,200, 100,100,100, 0,0,0, 255,0,0, 0,255,0, 0,0,255};
-	//pix[1] = (100);
+	int height = a.res_x, width = a.res_y;
 	output = fopen("../assets/image.pgm", "wb");
 	if (output == NULL)
 	{
@@ -115,3 +90,60 @@ void output()
 	fclose(output);
 	//cout << endl << stays_bounded(-1,0);
 }
+
+void init () {
+	if ( SDL_Init(SDL_INIT_VIDEO) < 0 ){
+		cout << "Unable to init SDL, error: " << SDL_GetError() << endl;
+		exit(1);
+	}
+
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
+	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 6);
+	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
+
+	window = SDL_CreateWindow("Mandelbrot", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+
+	SDL_GLContext glcontext = SDL_GL_CreateContext(window); 
+	if(window == NULL){	
+		exit(1);
+	}
+
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearDepth(1.0);
+	glDepthFunc(GL_LESS);
+	glEnable(GL_DEPTH_TEST);
+	glShadeModel(GL_SMOOTH);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(45.0f, (float) width / (float) height, 0.1f, 100.0f);
+	glMatrixMode(GL_MODELVIEW);
+}
+
+
+auto main() -> int {
+	equation_vars a;
+
+	for (int x = -a.res_x / 2; x <= a.res_x / 2; x++)
+	{
+		for (int i = -a.res_y / 2; i <= a.res_y / 2; i++)
+		{
+			double d = x;
+			double dx = d / (a.res_x * a.zoom) + a.pos_x;
+			d = i;
+			double di = d / (a.res_x * a.zoom) + a.pos_y;
+			if (stays_bounded(dx, di)) {
+				cout << "x = " << dx << ", i = " << di << " Position = " << x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x << endl;
+				a.pix[x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x] = (255);
+			}
+			else {
+				cout << "x = " << dx << ", i = " << di << " Position = " << x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x << endl;
+
+				a.pix[x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x] = (0);
+			}
+		}
+	}
+
+	output();
+}
+
