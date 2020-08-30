@@ -2,9 +2,24 @@
 
 ## a mandelbrot image viewer written in C++ & Qt5
 
-#### Installation
+-----
 
-First, you'll want to clone this repo.
+
+
+#### Building, Testing & Installation
+
+The following dependencies are required:
+
+- freeglut3-dev
+- libxmu-dev 
+- libxi-dev
+- mesa-utils
+- meson
+- ninja ( >=1.7 )
+
+`sudo apt install freeglut3-dev libxmu-dev libxi-dev mesa-utils build-essential meson`
+
+Then clone this repo:
 
 `git clone https://gitlab.com/anamika_ozo/mandel.git`
 
@@ -20,9 +35,3 @@ The meson build system is already set up for Windows 7+ & Debian, so these comma
 
 `sudo ninja -C builddir install`
 
-#### WIP
-
-- Zoom-in feature
-- Qt interface
-- Bookmarks on co-ordinates on the map
-- GPU acceleration & caching
