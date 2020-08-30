@@ -1,6 +1,5 @@
 #include <iostream>
 #include <math.h>
-
 using namespace std;
 
 class Complex {
@@ -21,7 +20,6 @@ bool stays_bounded(double x, double i) {
 
 	c.real_part = 1;
 	c.complex_part = 0;
-	//cout << c.magnitude() << endl;
 
 	c.real_part = x;
 	c.complex_part = i;
@@ -37,74 +35,35 @@ bool stays_bounded(double x, double i) {
 		//cout << "x = " << x << " i = " << i << endl;
 		z.real_part = x + c.real_part;
 		z.complex_part = i + c.complex_part;
-		//cout << count << ". z = " << z.real_part << " + " << i << "i" << endl;
-		//cout << "|z| = " << z.magnitude() << endl;
 		count++;
 		if (z.magnitude() >= 2 || z.magnitude() <= -2)
 		{
-			//cout << z.magnitude() << endl;
+
 			return 0;
 		}
 	}
-	//cout << z.magnitude() << endl;
 	return 1;
 }
 
 class equation_vars {
-	public:
-		unsigned char pix[2000000];
-		int res_x = 1000;
-		int res_y = 1000;
-		double zoom = 0.5;
-		double pos_x = -0.5;
-		double pos_y = 0;
-
-		const int width = 640, height = 480;
-	
-	private:
-		/* all private data goes here */
+public:
+	unsigned char pix[2000000];
+	int res_x = 1000;
+	int res_y = 1000;
+	double zoom = 0.5;
+	double pos_x = -0.5;
+	double pos_y = 0;
 };
 
-void init () {
-	if ( SDL_Init(SDL_INIT_VIDEO) < 0 ){
-		cout << "Unable to init SDL, error: " << SDL_GetError() << endl;
-		exit(1);
-	}
-
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
-	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 6);
-	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
-
-	window = SDL_CreateWindow("Mandelbrot", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
-
-	SDL_GLContext glcontext = SDL_GL_CreateContext(window); 
-	if(window == NULL){	
-		exit(1);
-	}
-
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	glClearDepth(1.0);
-	glDepthFunc(GL_LESS);
-	glEnable(GL_DEPTH_TEST);
-	glShadeModel(GL_SMOOTH);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(45.0f, (float) width / (float) height, 0.1f, 100.0f);
-	glMatrixMode(GL_MODELVIEW);
-}
 
 void output () {
 	equation_vars a;
 
-	SDL_Window *window;
-	void drawMandel(float xrf, float yrf, float zrf);
-
 	FILE *output;
-	int height = a.res_x, width = a.res_y;
+	int x, y, pixel, height = a.res_x, width = a.res_y;
+
 	output = fopen("../assets/image.pgm", "wb");
-	if (output == NULL)
-	{
+	if (output == NULL) {
 		perror("ERROR: Cannot open output file");
 		exit(EXIT_FAILURE);
 	}
@@ -139,10 +98,13 @@ auto main() -> int {
 				cout << "x = " << dx << ", i = " << di << " Position = " << x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x << endl;
 
 				a.pix[x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x] = (0);
+				//pix[x+res_x/2 + (i+res_y/2)*res_x +1]	= (0);
+				//pix[x+res_x/2 + (i+res_y/2)*res_x +2]	= (0);
 			}
 		}
 	}
 
 	output();
-}
 
+	return 0;
+}
