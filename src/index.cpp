@@ -59,6 +59,7 @@ void output (int iter) {
 	equation_vars a;
 
 	unsigned char pix[2000000];
+	int iterations[a.res_x][a.res_y];
 
 	for (int x = -a.res_x / 2; x <= a.res_x / 2; x++)
 	{
@@ -68,10 +69,14 @@ void output (int iter) {
 			double dx = d / (a.res_x * pow(10, a.zoom)) + a.pos_x;
 			d = i;
 			double di = d / (a.res_y * pow(10, a.zoom)) + a.pos_y;
-			int in = stays_bounded(dx, di, iter);
+			int in = 0;
+			if (iterations[x][i] < iter) {
+				in = stays_bounded(dx, di, iter);
+			}
 			if (in > 0) {
 				//cout << "x = " << dx << ", i = " << di << " Position = " << x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x << "in = " << (in%16)*16 << endl;
 				pix[x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x] = ((in%16)*16);
+				iterations[x][i] = in;
 			}
 			else {
 				//cout << "x = " << dx << ", i = " << di << " Position = " << x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x << "in = " << (in%16)*16 << endl;
@@ -105,7 +110,7 @@ void output (int iter) {
 
 auto main() -> int {
 	equation_vars a;
-	for (int x = 169; x < 10000; x++) {
+	for (int x = 203; x < 10000; x++) {
 		cout << x << endl;
 		output(x);
 	}
