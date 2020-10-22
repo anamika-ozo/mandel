@@ -13,6 +13,13 @@ public:
 	double magnitude() {
 		return sqrt(real_part * real_part + complex_part * complex_part);
 	}
+
+private:
+	bool is_bounded,
+		read_eq_vars;
+
+	long real, complex;
+	
 };
 
 class equation_vars {
@@ -25,7 +32,7 @@ public:
 	double pos_y 	= 0.00205;
 };
 
-int stays_bounded(double x, double i, int iter) {
+long stays_bounded(double x, double i, int iter) {
 	Complex c;
 
 	c.real_part = x;
@@ -57,27 +64,29 @@ int stays_bounded(double x, double i, int iter) {
 
 void output (int iter) {
 	equation_vars a;
+	Complex c;
 
 	unsigned char pix[2000000];
 	int iterations[a.res_x][a.res_y];
 
-	for (int x = -a.res_x / 2; x <= a.res_x / 2; x++)
-	{
-		for (int i = -a.res_y / 2; i <= a.res_y / 2; i++)
-		{
+	for (int x = -a.res_x / 2; x <= a.res_x / 2; x++) {
+		for (int i = -a.res_y / 2; i <= a.res_y / 2; i++) {
 			double d = x;
 			double dx = d / (a.res_x * pow(10, a.zoom)) + a.pos_x;
 			d = i;
 			double di = d / (a.res_y * pow(10, a.zoom)) + a.pos_y;
 			int in = 0;
+
 			if (iterations[x][i] < iter) {
 				in = stays_bounded(dx, di, iter);
 			}
+
 			if (in > 0) {
 				//cout << "x = " << dx << ", i = " << di << " Position = " << x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x << "in = " << (in%16)*16 << endl;
 				pix[x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x] = ((in%16)*16);
 				iterations[x][i] = in;
 			}
+
 			else {
 				//cout << "x = " << dx << ", i = " << di << " Position = " << x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x << "in = " << (in%16)*16 << endl;
 				pix[x + a.res_x / 2 + (i + a.res_y / 2) * a.res_x] = ((in%16)*16);
